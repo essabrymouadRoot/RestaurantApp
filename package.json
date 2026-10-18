@@ -1,0 +1,15 @@
+{
+  "name": "ember-table",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["apps/*"],
+  "scripts": {
+    "dev": "concurrently \"npm run dev -w @ember/client\" \"npm run dev -w @ember/api\"",
+    "build": "npm run build -w @ember/client && npm run build -w @ember/api",
+    "test": "npm run test -w @ember/api",
+    "start": "npm run start -w @ember/api"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
