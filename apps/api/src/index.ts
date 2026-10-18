@@ -1,11 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import { createReservation, getAvailability } from './repository.js';
 
 const app = express();
-const port = Number(process.env.PORT ?? 3001);
+const port = Number(process.env.PORT ?? 3000);
+const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
+const clientDirectory = path.resolve(currentDirectory, '../../client/dist');
 
 app.use(helmet());
 app.use(cors({ origin: process.env.NODE_ENV === 'production' ? false : true }));
@@ -37,4 +41,12 @@ app.post('/api/reservations', async (request, response) => {
   }
 });
 
-app.listen(port, '0.0.0.0', () => console.log(`Ember API listening on ${port}`));
+app.use(express.static(clientDirectory));
+app.use((request, response, next) => {
+  if (request.method === 'GET' && !request.path.startsWith('/api/')) {
+    return response.sendFile(path.join(clientDirectory, 'index.html'));
+  }
+  return next();
+});
+
+app.listen(port, '0.0.0.0', () => console.log(`Fun Club application listening on ${port}`));

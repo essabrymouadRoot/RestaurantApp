@@ -1,5 +1,5 @@
 {
-  "name": "@ember/api",
+  "name": "@fun-club/api",
   "private": true,
   "version": "1.0.0",
   "type": "module",

@@ -1,13 +1,13 @@
 {
-  "name": "ember-table",
+  "name": "fun-club",
   "private": true,
   "version": "1.0.0",
   "workspaces": ["apps/*"],
   "scripts": {
-    "dev": "concurrently \"npm run dev -w @ember/client\" \"npm run dev -w @ember/api\"",
-    "build": "npm run build -w @ember/client && npm run build -w @ember/api",
-    "test": "npm run test -w @ember/api",
-    "start": "npm run start -w @ember/api"
+    "dev": "concurrently \"npm run dev -w @fun-club/client\" \"npm run dev -w @fun-club/api\"",
+    "build": "npm run build -w @fun-club/client && npm run build -w @fun-club/api",
+    "test": "npm run test -w @fun-club/api",
+    "start": "npm run start -w @fun-club/api"
   },
   "devDependencies": {
     "concurrently": "^9.2.1"
