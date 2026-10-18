@@ -11,7 +11,15 @@ const port = Number(process.env.PORT ?? 3000);
 const currentDirectory = path.dirname(fileURLToPath(import.meta.url));
 const clientDirectory = path.resolve(currentDirectory, '../../client/dist');
 
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        'upgrade-insecure-requests': null
+      }
+    }
+  })
+);
 app.use(cors({ origin: process.env.NODE_ENV === 'production' ? false : true }));
 app.use(express.json({ limit: '32kb' }));
 
